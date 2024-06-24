@@ -1,0 +1,92 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 0.4807536887801049,
+      "y": 4.067333225575543
+    },
+    "rotation": 0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "28"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Swerve"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Arm"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "28-2"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Intake"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Feeder"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "28-3"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Swerve"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Arm"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}
