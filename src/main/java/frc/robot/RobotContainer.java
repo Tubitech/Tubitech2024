@@ -49,20 +49,20 @@ public class RobotContainer
   // Replace with CommandPS4Controller or CommandJoystick if needed
   final Joystick driverXbox = new Joystick(0);
   ///////////////////////////////// OSMAN //////////////////////////////////////////////
-  private final intake Intake = new intake();
-  private final feeder Feeder = new feeder();
-  private final shooter Shooter = new shooter();
-  private final ArmSubHandMade Arm = new ArmSubHandMade();
+  // private final intake Intake = new intake();
+  // private final feeder Feeder = new feeder();
+  // private final shooter Shooter = new shooter();
+  // private final ArmSubHandMade Arm = new ArmSubHandMade();
 
-  private final Joystick CommandController = new Joystick(1);
+  // private final Joystick CommandController = new Joystick(1);
 
 
-  private final JoystickButton zeroGyro = new JoystickButton(driverXbox, 6);
-  private final JoystickButton drivebaselock = new JoystickButton(driverXbox, 4);
+  private final JoystickButton zeroGyro = new JoystickButton(driverXbox, 2);
+  private final JoystickButton drivebaselock = new JoystickButton(driverXbox, 1);
 
-  private final JoystickButton turnSwerveToSpeaker = new JoystickButton(CommandController, 10);
-  private final JoystickButton turnArmToSpeaker = new JoystickButton(CommandController, 4);
-  private final JoystickButton turnArmToSpeakera = new JoystickButton(CommandController, 8);
+  // private final JoystickButton turnSwerveToSpeaker = new JoystickButton(CommandController, 10);
+  // private final JoystickButton turnArmToSpeaker = new JoystickButton(CommandController, 4);
+  // private final JoystickButton turnArmToSpeakera = new JoystickButton(CommandController, 8);
   // private final JoystickButton turnArmToAmp = new JoystickButton(CommandController, 2);
 
   ///////////////////////////////// OSMAN //////////////////////////////////////////////
@@ -104,9 +104,9 @@ public class RobotContainer
     // left stick controls translation
     // right stick controls the angular velocity of the robot
     Command driveFieldOrientedAnglularVelocity = drivebase.driveCommand(
-        () -> MathUtil.applyDeadband(driverXbox.getRawAxis(1), OperatorConstants.LEFT_Y_DEADBAND), //1
+        () -> MathUtil.applyDeadband(-driverXbox.getRawAxis(1), OperatorConstants.LEFT_Y_DEADBAND), //1
         () -> MathUtil.applyDeadband(-driverXbox.getRawAxis(0), OperatorConstants.LEFT_X_DEADBAND), //0
-        () -> -driverXbox.getRawAxis(2));                                                     //2
+        () -> -driverXbox.getRawAxis(4));                                                     //2
 
     // Command driveFieldOrientedDirectAngleSim = drivebase.simDriveCommand(
     //     () -> MathUtil.applyDeadband(-driverXbox.getRawAxis(1), OperatorConstants.LEFT_Y_DEADBAND), //1
@@ -118,15 +118,15 @@ public class RobotContainer
     //   !RobotBase.isSimulation() ? driveFieldOrientedAnglularVelocity : driveFieldOrientedDirectAngleSim);
 
     ////////////////////////////////////// OSMAN ///////////////////////////////////////////////
-    Intake.setDefaultCommand(new IntakeCommand(Intake, CommandController, driverXbox));
-    Feeder.setDefaultCommand(new FeederCommand(Feeder, CommandController, driverXbox));
-    Shooter.setDefaultCommand(new ShooterCommand(Shooter, CommandController, driverXbox));
-    Arm.setDefaultCommand(new ArmCommand(CommandController, driverXbox, Arm));
+    // Intake.setDefaultCommand(new IntakeCommand(Intake, CommandController, driverXbox));
+    // Feeder.setDefaultCommand(new FeederCommand(Feeder, CommandController, driverXbox));
+    // Shooter.setDefaultCommand(new ShooterCommand(Shooter, CommandController, driverXbox));
+    // Arm.setDefaultCommand(new ArmCommand(CommandController, driverXbox, Arm));
 
     NamedCommands.registerCommand("Swerve", new LimeLightCommand(drivebase));
-    NamedCommands.registerCommand("Arm",new TurnToAngleHandMade(Arm, Shooter, Feeder, CommandController));
-    NamedCommands.registerCommand("Intake", new intakeAuto(Intake));
-    NamedCommands.registerCommand("Feeder", new FeederAuto(Feeder));
+    // NamedCommands.registerCommand("Arm",new TurnToAngleHandMade(Arm, Shooter, Feeder, CommandController));
+    // NamedCommands.registerCommand("Intake", new intakeAuto(Intake));
+    // NamedCommands.registerCommand("Feeder", new FeederAuto(Feeder));
 
   }
 
@@ -150,9 +150,9 @@ public class RobotContainer
     // driverXbox.x().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly());
 
     ///////////////////////////Osman///////////////////////////////////////////
-    turnSwerveToSpeaker.onTrue(new LimeLightCommand(drivebase));
-    turnArmToSpeaker.onTrue(new TurnToAngleHandMade(Arm, Shooter, Feeder, CommandController));
-    turnArmToSpeakera.onTrue(new TurnToAngleHandMade(Arm, Shooter, Feeder, CommandController));
+    // turnSwerveToSpeaker.onTrue(new LimeLightCommand(drivebase));
+    // turnArmToSpeaker.onTrue(new TurnToAngleHandMade(Arm, Shooter, Feeder, CommandController));
+    // turnArmToSpeakera.onTrue(new TurnToAngleHandMade(Arm, Shooter, Feeder, CommandController));
     // turnArmToAmp.onTrue(new AmpShooterCommand(Feeder, Shooter, Arm));
   }
 
